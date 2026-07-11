@@ -33,10 +33,23 @@ def get_flight_data():
     token_url = "https://auth.opensky-network.org/auth/realms/opensky-network/protocol/openid-connect/token" 
     token_payload = { 
         "grant_type": "client_credentials", 
-        "client_id": "smh-api-client",  # 아까 알려주신 ID
-        "client_secret": "ovS5NwO331d0Ws1yHE9ll67N2Egze6DZ" # 아까 알려주신 Secret
+        "client_id": client_id  # 아까 알려주신 ID
+        "client_secret": client_secret # 아까 알려주신 Secret
     }
-    
+
+    try:
+        token_response = requests.post(token_url, data=token_payload, timeout=30) 
+        token_response.raise_for_status() 
+        access_token = token_response.json().get("access_token") 
+        
+        if not access_token:
+            st.error("❌ 인증 토큰을 받아오지 못했습니다.")
+            return None
+            
+    except RequestException as e:
+        # 뻗어버리는 대신 Streamlit 화면에 예쁜 에러 창을 띄우고 조회를 멈춥니다.
+        st.error("🔌 OpenSky 인증 서버가 혼잡하여 연결이 지연되고 있습니다. 잠시 후 새로고침 해주세요.")
+        return None
     token_response = requests.post(token_url, data=token_payload, timeout=30) 
     token_response.raise_for_status() 
     
