@@ -33,7 +33,7 @@ def get_flight_data():
     token_url = "https://auth.opensky-network.org/auth/realms/opensky-network/protocol/openid-connect/token" 
     token_payload = { 
         "grant_type": "client_credentials", 
-        "client_id": client_id,  # 아까 알려주신 ID
+        "client_id": 'client_id',  # 아까 알려주신 ID
         "client_secret": client_secret # 아까 알려주신 Secret
     }
 
