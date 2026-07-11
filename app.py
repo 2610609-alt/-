@@ -35,7 +35,7 @@ def get_flight_data():
     url = "https://opensky-network.org/api/states/all"
     params = {"lamin": 33.0, "lamax": 39.0, "lomin": 124.0, "lomax": 132.0}
     try:
-        api_response = requests.get(api_url, params=params, headers=headers, timeout=30)
+        api_response = requests.get(url, params=params, headers=headers, timeout=30)
         data = response.json()
         if data is not None and data.get("states") is not None:
             return data["states"]
