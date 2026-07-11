@@ -30,6 +30,18 @@ z_threshold = st.sidebar.slider(
 # 2. 데이터 수집 (OpenSky API)
 # -----------------------------------------------------------
 def get_flight_data():
+    token_url = "https://auth.opensky-network.org/auth/realms/opensky-network/protocol/openid-connect/token" 
+    token_payload = { 
+        "grant_type": "client_credentials", 
+        "client_id": "smh-api-client",  # 아까 알려주신 ID
+        "client_secret": "ovS5NwO331d0Ws1yHE9ll67N2Egze6DZ" # 아까 알려주신 Secret
+    }
+    
+    token_response = requests.post(token_url, data=token_payload, timeout=30) 
+    token_response.raise_for_status() 
+    
+    # 바로 여기서 access_token 변수가 만들어집니다!
+    access_token = token_response.json().get("access_token")
     url = "https://opensky-network.org/api/states/all"
     params = {"lamin": 33.0, "lamax": 39.0, "lomin": 124.0, "lomax": 132.0}
     headers = { 
@@ -51,18 +63,7 @@ def get_flight_data():
         return []
 
 raw_data = get_flight_data()
-token_url = "https://auth.opensky-network.org/auth/realms/opensky-network/protocol/openid-connect/token" 
-token_payload = { 
-        "grant_type": "client_credentials", 
-        "client_id": "smh-api-client",  # 아까 알려주신 ID
-        "client_secret": "ovS5NwO331d0Ws1yHE9ll67N2Egze6DZ" # 아까 알려주신 Secret
-    }
-    
-token_response = requests.post(token_url, data=token_payload, timeout=30) 
-token_response.raise_for_status() 
-    
-    # 바로 여기서 access_token 변수가 만들어집니다!
-access_token = token_response.json().get("access_token")
+
   
 
 # -----------------------------------------------------------
