@@ -51,7 +51,7 @@ def get_flight_data():
         return []
 
 raw_data = get_flight_data()
-    token_url = "https://auth.opensky-network.org/auth/realms/opensky-network/protocol/openid-connect/token" 
+token_url = "https://auth.opensky-network.org/auth/realms/opensky-network/protocol/openid-connect/token" 
     token_payload = { 
         "grant_type": "client_credentials", 
         "client_id": "smh-api-client",  # 아까 알려주신 ID
@@ -63,6 +63,7 @@ raw_data = get_flight_data()
     
     # 바로 여기서 access_token 변수가 만들어집니다!
     access_token = token_response.json().get("access_token")
+  
 
 # -----------------------------------------------------------
 # 3. 데이터 전처리 및 Z-score 계산 (Pandas)
