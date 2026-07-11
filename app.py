@@ -41,7 +41,7 @@ def get_flight_data():
         # 2. 위에서 만든 headers를 가져와서 데이터를 요청합니다.
         api_response = requests.get(api_url, params=params, headers=headers, timeout=30)
         api_response.raise_for_status() 
-        data = api_response.json(), timeout=30)
+        data = api_response.json()
         data = response.json()
         if data is not None and data.get("states") is not None:
             return data["states"]
