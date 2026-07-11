@@ -34,7 +34,7 @@ def get_flight_data():
     token_payload = { 
         "grant_type": "client_credentials", 
         "client_id": 'client_id',  # 아까 알려주신 ID
-        "client_secret": client_secret # 아까 알려주신 Secret
+        "client_secret": 'client_secret' # 아까 알려주신 Secret
     }
 
     try:
