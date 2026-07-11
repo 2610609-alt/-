@@ -143,4 +143,4 @@ if len(raw_data) > 0:
        
     st.dataframe(df[['callsign', 'status', 'z_score', 'vertical_rate', 'baro_altitude', 'velocity']])
 else:
-    st.warning("현재 한반도 상공에서 감지된 비행기 데이터가 없습니다. (잠시 후 다시 시도해보세요)"
+    st.warning("현재 한반도 상공에서 감지된 비행기 데이터가 없습니다. (잠시 후 다시 시도해보세요)")
