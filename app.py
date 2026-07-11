@@ -4,6 +4,15 @@ import requests
 import pydeck as pdk
 import numpy as np
 
+headers = { 
+        "Authorization": f"Bearer {access_token}" 
+    }
+    
+    try: 
+        # 2. 위에서 만든 headers를 가져와서 데이터를 요청합니다.
+        api_response = requests.get(api_url, params=params, headers=headers, timeout=30)
+        api_response.raise_for_status() 
+        data = api_response.json()
 st.set_page_config(page_title="한반도 실시간 비행기 추적", layout="wide")
 
 st.title("✈️ 한반도 상공 실시간 비행기 이상 탐지 웹앱")
