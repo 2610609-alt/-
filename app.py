@@ -50,7 +50,7 @@ def get_flight_data():
         st.error(f"데이터를 가져오는 중 오류가 발생했습니다: {e}")
         return []
 
-raw_data = get_flight_data():
+raw_data = get_flight_data()
     token_url = "https://auth.opensky-network.org/auth/realms/opensky-network/protocol/openid-connect/token" 
     token_payload = { 
         "grant_type": "client_credentials", 
