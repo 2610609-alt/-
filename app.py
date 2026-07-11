@@ -32,12 +32,10 @@ z_threshold = st.sidebar.slider(
 def get_flight_data():
     url = "https://opensky-network.org/api/states/all"
     params = {"lamin": 33.0, "lamax": 39.0, "lomin": 124.0, "lomax": 132.0}
-    try:
-        api_response = requests.get(url, params=params, headers = { 
+    headers = { 
         "Authorization": f"Bearer {access_token}" 
     }
-    
-    try: 
+    try:
         # 2. 위에서 만든 headers를 가져와서 데이터를 요청합니다.
         api_response = requests.get(api_url, params=params, headers=headers, timeout=30)
         api_response.raise_for_status() 
