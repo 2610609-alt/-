@@ -35,6 +35,8 @@ def get_flight_data():
     headers = { 
         "Authorization": f"Bearer {access_token}" 
     }
+    
+    
     try:
         # 2. 위에서 만든 headers를 가져와서 데이터를 요청합니다.
         api_response = requests.get(api_url, params=params, headers=headers, timeout=30)
