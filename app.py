@@ -4,17 +4,6 @@ import requests
 import pydeck as pdk
 import numpy as np
 
-headers = { 
-        "Authorization": f"Bearer {access_token}" 
-    }
-    
-    try: 
-        # 2. 위에서 만든 headers를 가져와서 데이터를 요청합니다.
-        api_response = requests.get(api_url, params=params, headers=headers, timeout=30)
-        api_response.raise_for_status() 
-        data = api_response.json()
-st.set_page_config(page_title="한반도 실시간 비행기 추적", layout="wide")
-
 st.title("✈️ 한반도 상공 실시간 비행기 이상 탐지 웹앱")
 st.write("OpenSky API 데이터에 Z-score 통계 기법을 적용하여 급강하 중인 비행기를 자동으로 감지합니다.")
 
@@ -44,7 +33,15 @@ def get_flight_data():
     url = "https://opensky-network.org/api/states/all"
     params = {"lamin": 33.0, "lamax": 39.0, "lomin": 124.0, "lomax": 132.0}
     try:
-        api_response = requests.get(url, params=params, headers=headers, timeout=30)
+        api_response = requests.get(url, params=params, headers = { 
+        "Authorization": f"Bearer {access_token}" 
+    }
+    
+    try: 
+        # 2. 위에서 만든 headers를 가져와서 데이터를 요청합니다.
+        api_response = requests.get(api_url, params=params, headers=headers, timeout=30)
+        api_response.raise_for_status() 
+        data = api_response.json(), timeout=30)
         data = response.json()
         if data is not None and data.get("states") is not None:
             return data["states"]
